@@ -1,931 +1,211 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/blog/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=6.4.1">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=6.4.1">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=6.4.1">
-
-
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=6.4.1" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/blog/',
-    scheme: 'Muse',
-    version: '6.4.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="Fuck The World">
-<meta name="keywords" content="Fuck The World">
-<meta property="og:type" content="website">
-<meta property="og:title" content="约瑟夫.岑">
-<meta property="og:url" content="http://cinjoseph.github.io/blog/index.html">
-<meta property="og:site_name" content="约瑟夫.岑">
-<meta property="og:description" content="Fuck The World">
-<meta property="og:locale" content="zh-CN">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="约瑟夫.岑">
-<meta name="twitter:description" content="Fuck The World">
-
-
-
-
-
-
-  <link rel="canonical" href="http://cinjoseph.github.io/blog/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>约瑟夫.岑</title>
-  
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Fuck The World">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/blog/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">约瑟夫.岑</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-    
-      
-        <p class="site-subtitle">莫听穿林打叶声，何妨吟啸且徐行</p>
-      
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
     </button>
-  </div>
+</div>
+
+<div class="index-about">
+    <i> 莫听穿林打叶声，何妨吟啸且徐行 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/blog/" />
+        </div>
+        <div class="name">
+            <i>cinjoseph</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li  class=active >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
 </div>
 
 
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
 
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> 莫听穿林打叶声，何妨吟啸且徐行 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
         
-        
-        
-          
-          <li class="menu-item menu-item-home">
-    <a href="/blog/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-    <a href="/blog/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
-  </li>
+<div class="post-preview-container" style="min-height: 720px">
+    
+    <div class="post-preview">
+        <div class="post-time">2018-08-17</div>
+        <div class="post-info">
+            <a href="/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/">
+                <h3>
+                    数据库事务隔离级别-- 脏读、幻读、不可重复读
+                </h3>
+            </a>
+            <p>
+                
+                <span>/</span>
+                
+                <a class="tag" href="/blog/tags/#default" title="default">default</a>
+                <span>/</span>
+                
+                <a class="tag" href="/blog/tags/#mysql" title="mysql">mysql</a>
+                <span>/</span>
+                
+                <a class="tag" href="/blog/tags/#事务" title="事务">事务</a>
+                <span>/</span>
+                
+                
+            </p>
+        </div>
+    </div>
+    
+    <div class="post-preview">
+        <div class="post-time">2018-07-10</div>
+        <div class="post-info">
+            <a href="/blog/2018/07/10/由火币k线爬虫引出的http长链接问题/">
+                <h3>
+                    由火币k线爬虫引出的http长链接问题
+                </h3>
+            </a>
+            <p>
+                
+                <span>/</span>
+                
+                <a class="tag" href="/blog/tags/#http" title="http">http</a>
+                <span>/</span>
+                
+                <a class="tag" href="/blog/tags/#长链接" title="长链接">长链接</a>
+                <span>/</span>
+                
+                <a class="tag" href="/blog/tags/#requests" title="requests">requests</a>
+                <span>/</span>
+                
+                
+            </p>
+        </div>
+    </div>
+    
+</div>
+<ul class="pager">
+    
+    
+</ul>
 
-      
-      
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
     </ul>
-  
-
-  
     
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
 
-  
 
-  
-</nav>
 
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/blog/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="cinjoseph">
-      <meta itemprop="description" content="Fuck The World">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="约瑟夫.岑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/" itemprop="url">
-                  数据库事务隔离级别-- 脏读、幻读、不可重复读
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-17 14:44:17" itemprop="dateCreated datePublished" datetime="2018-08-17T14:44:17+08:00">2018-08-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-17 14:46:27" itemprop="dateModified" datetime="2018-09-17T14:46:27+08:00">2018-09-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="0X1-数据库事务隔离级别"><a href="#0X1-数据库事务隔离级别" class="headerlink" title="0X1 数据库事务隔离级别"></a>0X1 数据库事务隔离级别</h1><p>数据库事务的隔离级别有4个，由低到高依次为</p>
-<pre><code>- Read uncommitted 
-- Read committed 
-- Repeatable read 
-- Serializable 
-</code></pre><p>这四个级别可以逐个解决脏读 、不可重复读 、幻读 这几类问题。</p>
-<p>√: 可能出现    ×: 不会出现</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>脏读</th>
-<th>不可重复读</th>
-<th>幻读 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Read uncommitted</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>Read committed</td>
-<td>X</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>Repeatable read</td>
-<td>X</td>
-<td>X</td>
-<td>√</td>
-</tr>
-<tr>
-<td>Serializable</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
-</tr>
-</tbody>
-</table>
-<p>注意：我们讨论隔离级别的场景，主要是在多个事务并发 的情况下，因此，接下来的讲解都围绕事务并发。</p>
-<h2 id="Read-uncommitted-读未提交"><a href="#Read-uncommitted-读未提交" class="headerlink" title="Read uncommitted 读未提交"></a>Read uncommitted 读未提交</h2><p>公司发工资了，领导把5000元打到singo的账号上，但是该事务并未提交，而singo正好去查看账户，发现工资已经到账，是5000元整，非常高 兴。可是不幸的是，领导发现发给singo的工资金额不对，是2000元，于是迅速回滚了事务，修改金额后，将事务提交，最后singo实际的工资只有 2000元，singo空欢喜一场。</p>
-<p><img src="https://cinjoseph.github.io/images/f244ae46-c8f4-3bc1-906e-d1d9c1af3516.gif" alt="avatar"></p>
-<p>出现上述情况，即我们所说的脏读 ，两个并发的事务，“事务A：领导给singo发工资”、“事务B：singo查询工资账户”，事务B读取了事务A尚未提交的数据。</p>
-<p>当隔离级别设置为Read uncommitted 时，就可能出现脏读，如何避免脏读，请看下一个隔离级别。</p>
-<h2 id="Read-committed-读提交"><a href="#Read-committed-读提交" class="headerlink" title="Read committed 读提交"></a>Read committed 读提交</h2><p>singo拿着工资卡去消费，系统读取到卡里确实有2000元，而此时她的老婆也正好在网上转账，把singo工资卡的2000元转到另一账户，并在 singo之前提交了事务，当singo扣款时，系统检查到singo的工资卡已经没有钱，扣款失败，singo十分纳闷，明明卡里有钱，为 何……</p>
-<p>出现上述情况，即我们所说的不可重复读 ，两个并发的事务，“事务A：singo消费”、“事务B：singo的老婆网上转账”，事务A事先读取了数据，事务B紧接了更新了数据，并提交了事务，而事务A再次读取该数据时，数据已经发生了改变。</p>
-<p>当隔离级别设置为Read committed 时，避免了脏读，但是可能会造成不可重复读。</p>
-<p>大多数数据库的默认级别就是Read committed，比如Sql Server , Oracle。如何解决不可重复读这一问题，请看下一个隔离级别。</p>
-<h2 id="Repeatable-read-重复读"><a href="#Repeatable-read-重复读" class="headerlink" title="Repeatable read 重复读"></a>Repeatable read 重复读</h2><p>当隔离级别设置为Repeatable read 时，可以避免不可重复读。当singo拿着工资卡去消费时，一旦系统开始读取工资卡信息（即事务开始），singo的老婆就不可能对该记录进行修改，也就是singo的老婆不能在此时转账。</p>
-<p>虽然Repeatable read避免了不可重复读，但还有可能出现幻读 。</p>
-<p>singo的老婆工作在银行部门，她时常通过银行内部系统查看singo的信用卡消费记录。有一天，她正在查询到singo当月信用卡的总消费金额 （select sum(amount) from transaction where month = 本月）为80元，而singo此时正好在外面胡吃海塞后在收银台买单，消费1000元，即新增了一条1000元的消费记录（insert transaction … ），并提交了事务，随后singo的老婆将singo当月信用卡消费的明细打印到A4纸上，却发现消费总额为1080元，singo的老婆很诧异，以为出 现了幻觉，幻读就这样产生了。</p>
-<p>注：Mysql的默认隔离级别就是Repeatable read。</p>
-<h2 id="Serializable-序列化"><a href="#Serializable-序列化" class="headerlink" title="Serializable 序列化"></a>Serializable 序列化</h2><p>Serializable 是最高的事务隔离级别，同时代价也花费最高，性能很低，一般很少使用，在该级别下，事务顺序执行，不仅可以避免脏读、不可重复读，还避免了幻像读。</p>
-<h1 id="0X2-脏读、幻读、不可重复读"><a href="#0X2-脏读、幻读、不可重复读" class="headerlink" title="0X2 脏读、幻读、不可重复读"></a>0X2 脏读、幻读、不可重复读</h1><h2 id="脏读："><a href="#脏读：" class="headerlink" title="脏读："></a>脏读：</h2><p>脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时，另外一个事务也访问这个数据，然后使用了这个数据。</p>
-<h2 id="不可重复读："><a href="#不可重复读：" class="headerlink" title="不可重复读："></a>不可重复读：</h2><p>是指在一个事务内，多次读同一数据。在这个事务还没有结束时，另外一个事务也访问该同一数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改，那么第一个事务两次读到的的数据可能是不一样的。这样就发生了在一个事务内两次读到的数据是不一样的，因此称为是不可重复读。（即不能读到相同的数据内容）<br>例如，一个编辑人员两次读取同一文档，但在两次读取之间，作者重写了该文档。当编辑人员第二次读取文档时，文档已更改。原始读取不可重复。如果只有在作者全部完成编写后编辑人员才可以读取文档，则可以避免该问题。</p>
-<p>##幻读:<br>是指当事务不是独立执行时发生的一种现象，例如第一个事务对一个表中的数据进行了修改，这种修改涉及到表中的全部数据行。同时，第二个事务也修改这个表中的数据，这种修改是向表中插入一行新数据。那么，以后就会发生操作第一个事务的用户发现表中还有没有修改的数据行，就好象<br>发生了幻觉一样。<br>例如，一个编辑人员更改作者提交的文档，但当生产部门将其更改内容合并到该文档的主复本时，发现作者已将未编辑的新材料添加到该文档中。如果在编辑人员和生产部门完成对原始文档的处理之前，任何人都不能将新材料添加到文档中，则可以避免该问题。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/blog/blog/2018/07/10/由火币k线爬虫引出的http长链接问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="cinjoseph">
-      <meta itemprop="description" content="Fuck The World">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="约瑟夫.岑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/07/10/由火币k线爬虫引出的http长链接问题/" itemprop="url">
-                  由火币k线爬虫引出的http长链接问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-10 18:50:31" itemprop="dateCreated datePublished" datetime="2018-07-10T18:50:31+08:00">2018-07-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-10 19:06:21" itemprop="dateModified" datetime="2018-09-10T19:06:21+08:00">2018-09-10</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="0X00-背景"><a href="#0X00-背景" class="headerlink" title="0X00 背景"></a>0X00 背景</h1><p>在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。</p>
-<h1 id="0X01-起因"><a href="#0X01-起因" class="headerlink" title="0X01 起因"></a>0X01 起因</h1><p>问题的原因在于，火币在github上提供的Python SDK中，直接使用requests.get()和requests.post()。导致每次请求都会不断建/拆连接，作为主动关闭方，频繁的建/拆tcp连接，必定导致大量的TIME_WAIT。</p>
-<p>了解到起因后修改了一下火币的SDK，利用request.session来保持长链接。效果很棒，不但减少了TIME_WAIT的产生，还提升了请求速度。</p>
-<p>修改之前：<br>    use 1.104477 seconds </p>
-<p>修改之后：<br>    use 0.385232 seconds</p>
-<h1 id="0X02-反问"><a href="#0X02-反问" class="headerlink" title="0X02 反问"></a>0X02 反问</h1><p>找到了问题原因，还修改了火币SDK分享给了群里的韭菜们。开开心心的扭头跟叶老师分享我的成果。但叶老师反问了一个很专业的问题，你说的长链接，是说的那个keep-alive么？</p>
-<p>长连接？keep-alive? 恩，我也不知道是哪种，不过可以抓包看一下。但抓包之前要先抛出假设。经过我和叶老师激烈的讨(si)论(bi)我做了如下假设：</p>
-<p>1、http不带有keep-alive的话，服务器再完成请求后会主动断开连接<br>2、requests.get() 发起的http请求不带有keep-alive，所以请求完成后，服务器会把连接接断开。<br>3、session.get() 发起的http请求带有keep-alive，请求完成后服务器非意外情况不会断开连接，由客户端控制连接长短</p>
-<p>下面就是抓包<br>第一个场景：调用requests.get()，观察http是否带有keep-alive，服务器 or 客户端 主动断开连接</p>
-<p>源码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">	</span><br><span class="line">HEADERS = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:44.0) Gecko/20100101 Firefox/44.0'</span>,</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line">url = <span class="string">"http://www.163.com"</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line"><span class="comment">#r = self.session.get(url)</span></span><br><span class="line"><span class="keyword">print</span> r</span><br><span class="line">	</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-<p>这是我访问<a href="http://www.163.com的包。可以看到requests.get()里面其实是带有keep-alive的。跟我预想的不太一样。" target="_blank" rel="noopener">www.163.com的包。可以看到requests.get()里面其实是带有keep-alive的。跟我预想的不太一样。</a><br><img src="https://cinjoseph.github.io/images/WX20180712-234652@2x.png" alt="avatar"></p>
-<p>再看一下连接断开的包，其实也是客户端主动断开的。<br><img src="https://cinjoseph.github.io/images/WX20180712-235730@2x.png" alt="avatar"></p>
-<p>恩，看来有keep-alive的时候确实服务器不会主动断开链接。</p>
-<p>那我们尝试一下把keep-alive干掉，服务器会不会主动断开连接？<br>因为用的是requests库，而且keep-alive是默认加上的，只能去库里面把代码注释掉了。</p>
-<p>注释位置如下：requests/utils.py ：741<br><img src="https://cinjoseph.github.io/images/WX20180713-000022@2x.png" alt="avatar"></p>
-<p>注释掉代码后，再次发起请求看一下，确实没有了keep-alive<br><img src="https://cinjoseph.github.io/images/WX20180713-000154@2x.png" alt="avatar"></p>
-<p>但是好像还是客户端断开的连接。为什么呢？后来查了查可能跟nginx的特性有关，这个后续再专门来研究吧。<br><img src="https://cinjoseph.github.io/images/WX20180713-000335@2x.png" alt="avatar"></p>
-<p>总之到此为止，前两个假设都已经错误了。不过倒是可以确定一点。request.get会自己断开连接，确实是短连接，哈哈。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-
-
-          </div>
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">cinjoseph</p>
-              <p class="site-description motion-element" itemprop="description">Fuck The World</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/blog/archives/">
-                
-                    <span class="site-state-item-count">2</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">标签</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">cinjoseph</span>
-
-  
-
-  
-</div>
-
-
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.1</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-	
-    
-
-    
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=6.4.1"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=6.4.1"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=6.4.1"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/blog/"
+    window.isPost = false
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 </html>
