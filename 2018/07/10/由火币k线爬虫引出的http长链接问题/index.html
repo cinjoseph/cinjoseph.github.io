@@ -116,16 +116,16 @@
 <meta property="og:site_name" content="约瑟夫.岑">
 <meta property="og:description" content="0X00 背景在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://cinjoseph.github.io/images/WX20180712-234652@2x.png">
-<meta property="og:image" content="https://cinjoseph.github.io/images/WX20180712-235730@2x.png">
-<meta property="og:image" content="https://cinjoseph.github.io/images/WX20180713-000022@2x.png">
-<meta property="og:image" content="https://cinjoseph.github.io/images/WX20180713-000154@2x.png">
-<meta property="og:image" content="https://cinjoseph.github.io/images/WX20180713-000335@2x.png">
-<meta property="og:updated_time" content="2018-09-10T11:06:21.391Z">
+<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的http长链接问题/由火币k线爬虫引出的http长链接问题/1.png">
+<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的http长链接问题/由火币k线爬虫引出的http长链接问题/2.png">
+<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的http长链接问题/由火币k线爬虫引出的http长链接问题/3.png">
+<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的http长链接问题/由火币k线爬虫引出的http长链接问题/4.png">
+<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的http长链接问题/由火币k线爬虫引出的http长链接问题/5.png">
+<meta property="og:updated_time" content="2018-09-20T08:11:35.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="由火币k线爬虫引出的http长链接问题">
 <meta name="twitter:description" content="0X00 背景在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。">
-<meta name="twitter:image" content="https://cinjoseph.github.io/images/WX20180712-234652@2x.png">
+<meta name="twitter:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的http长链接问题/由火币k线爬虫引出的http长链接问题/1.png">
 
 
 
@@ -350,7 +350,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-10 19:06:21" itemprop="dateModified" datetime="2018-09-10T19:06:21+08:00">2018-09-10</time>
+                <time title="修改时间：2018-09-20 16:11:35" itemprop="dateModified" datetime="2018-09-20T16:11:35+08:00">2018-09-20</time>
               
             
           </span>
@@ -394,13 +394,13 @@
 <p>下面就是抓包<br>第一个场景：调用requests.get()，观察http是否带有keep-alive，服务器 or 客户端 主动断开连接</p>
 <p>源码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">	</span><br><span class="line">HEADERS = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:44.0) Gecko/20100101 Firefox/44.0'</span>,</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line">url = <span class="string">"http://www.163.com"</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line"><span class="comment">#r = self.session.get(url)</span></span><br><span class="line"><span class="keyword">print</span> r</span><br><span class="line">	</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-<p>这是我访问<a href="http://www.163.com的包。可以看到requests.get()里面其实是带有keep-alive的。跟我预想的不太一样。" target="_blank" rel="noopener">www.163.com的包。可以看到requests.get()里面其实是带有keep-alive的。跟我预想的不太一样。</a><br><img src="https://cinjoseph.github.io/images/WX20180712-234652@2x.png" alt="avatar"></p>
-<p>再看一下连接断开的包，其实也是客户端主动断开的。<br><img src="https://cinjoseph.github.io/images/WX20180712-235730@2x.png" alt="avatar"></p>
+<p>这是我访问<a href="http://www.163.com的包。可以看到requests.get()里面其实是带有keep-alive的。跟我预想的不太一样。" target="_blank" rel="noopener">www.163.com的包。可以看到requests.get()里面其实是带有keep-alive的。跟我预想的不太一样。</a><br><img src="由火币k线爬虫引出的http长链接问题/1.png" alt="avatar"></p>
+<p>再看一下连接断开的包，其实也是客户端主动断开的。<br><img src="由火币k线爬虫引出的http长链接问题/2.png" alt="avatar"></p>
 <p>恩，看来有keep-alive的时候确实服务器不会主动断开链接。</p>
 <p>那我们尝试一下把keep-alive干掉，服务器会不会主动断开连接？<br>因为用的是requests库，而且keep-alive是默认加上的，只能去库里面把代码注释掉了。</p>
-<p>注释位置如下：requests/utils.py ：741<br><img src="https://cinjoseph.github.io/images/WX20180713-000022@2x.png" alt="avatar"></p>
-<p>注释掉代码后，再次发起请求看一下，确实没有了keep-alive<br><img src="https://cinjoseph.github.io/images/WX20180713-000154@2x.png" alt="avatar"></p>
-<p>但是好像还是客户端断开的连接。为什么呢？后来查了查可能跟nginx的特性有关，这个后续再专门来研究吧。<br><img src="https://cinjoseph.github.io/images/WX20180713-000335@2x.png" alt="avatar"></p>
+<p>注释位置如下：requests/utils.py ：741<br><img src="由火币k线爬虫引出的http长链接问题/3.png" alt="avatar"></p>
+<p>注释掉代码后，再次发起请求看一下，确实没有了keep-alive<br><img src="由火币k线爬虫引出的http长链接问题/4.png" alt="avatar"></p>
+<p>但是好像还是客户端断开的连接。为什么呢？后来查了查可能跟nginx的特性有关，这个后续再专门来研究吧。<br><img src="由火币k线爬虫引出的http长链接问题/5.png" alt="avatar"></p>
 <p>总之到此为止，前两个假设都已经错误了。不过倒是可以确定一点。request.get会自己断开连接，确实是短连接，哈哈。</p>
 
       
