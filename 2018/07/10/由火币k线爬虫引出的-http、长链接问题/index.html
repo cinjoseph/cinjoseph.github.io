@@ -108,24 +108,31 @@
 
 
 
-  <meta name="description" content="Fuck The World">
-<meta name="keywords" content="Fuck The World">
-<meta property="og:type" content="website">
-<meta property="og:title" content="约瑟夫.岑">
-<meta property="og:url" content="http://cinjoseph.github.io/blog/index.html">
+  <meta name="description" content="0X00 背景在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。">
+<meta name="keywords" content="http,长链接,requests">
+<meta property="og:type" content="article">
+<meta property="og:title" content="由火币k线爬虫引出的-- http长链接问题">
+<meta property="og:url" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/index.html">
 <meta property="og:site_name" content="约瑟夫.岑">
-<meta property="og:description" content="Fuck The World">
+<meta property="og:description" content="0X00 背景在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/1.png">
+<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/2.png">
+<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/3.png">
+<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/4.png">
+<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/5.png">
+<meta property="og:updated_time" content="2018-09-20T09:11:51.804Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="约瑟夫.岑">
-<meta name="twitter:description" content="Fuck The World">
+<meta name="twitter:title" content="由火币k线爬虫引出的-- http长链接问题">
+<meta name="twitter:description" content="0X00 背景在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。">
+<meta name="twitter:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://cinjoseph.github.io/blog/"/>
+  <link rel="canonical" href="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/"/>
 
 
 
@@ -135,7 +142,7 @@
   };
 </script>
 
-  <title>约瑟夫.岑</title>
+  <title>由火币k线爬虫引出的-- http长链接问题 | 约瑟夫.岑</title>
   
 
 
@@ -182,8 +189,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -268,221 +274,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/blog/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="cinjoseph">
-      <meta itemprop="description" content="Fuck The World">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="约瑟夫.岑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/" itemprop="url">
-                  数据库事务隔离级别-- 脏读、幻读、不可重复读
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-17 14:44:17" itemprop="dateCreated datePublished" datetime="2018-08-17T14:44:17+08:00">2018-08-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-20 16:59:02" itemprop="dateModified" datetime="2018-09-20T16:59:02+08:00">2018-09-20</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本文为转载。</p>
-<h1 id="0X1-数据库事务隔离级别"><a href="#0X1-数据库事务隔离级别" class="headerlink" title="0X1 数据库事务隔离级别"></a>0X1 数据库事务隔离级别</h1><p>数据库事务的隔离级别有4个，由低到高依次为</p>
-<pre><code>- Read uncommitted 
-- Read committed 
-- Repeatable read 
-- Serializable 
-</code></pre><p>这四个级别可以逐个解决脏读 、不可重复读 、幻读 这几类问题。</p>
-<p>√: 可能出现    ×: 不会出现</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>脏读</th>
-<th>不可重复读</th>
-<th>幻读 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Read uncommitted</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>Read committed</td>
-<td>X</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>Repeatable read</td>
-<td>X</td>
-<td>X</td>
-<td>√</td>
-</tr>
-<tr>
-<td>Serializable</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
-</tr>
-</tbody>
-</table>
-<p>注意：我们讨论隔离级别的场景，主要是在多个事务并发 的情况下，因此，接下来的讲解都围绕事务并发。</p>
-<h2 id="Read-uncommitted-读未提交"><a href="#Read-uncommitted-读未提交" class="headerlink" title="Read uncommitted 读未提交"></a>Read uncommitted 读未提交</h2><p>公司发工资了，领导把5000元打到singo的账号上，但是该事务并未提交，而singo正好去查看账户，发现工资已经到账，是5000元整，非常高 兴。可是不幸的是，领导发现发给singo的工资金额不对，是2000元，于是迅速回滚了事务，修改金额后，将事务提交，最后singo实际的工资只有 2000元，singo空欢喜一场。</p>
-<p><img src="/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/1.gif" alt="avatar"><br><img src="/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/1.png" alt="avatar"></p>
-<p>出现上述情况，即我们所说的脏读 ，两个并发的事务，“事务A：领导给singo发工资”、“事务B：singo查询工资账户”，事务B读取了事务A尚未提交的数据。</p>
-<p>当隔离级别设置为Read uncommitted 时，就可能出现脏读，如何避免脏读，请看下一个隔离级别。</p>
-<h2 id="Read-committed-读提交"><a href="#Read-committed-读提交" class="headerlink" title="Read committed 读提交"></a>Read committed 读提交</h2><p>singo拿着工资卡去消费，系统读取到卡里确实有2000元，而此时她的老婆也正好在网上转账，把singo工资卡的2000元转到另一账户，并在 singo之前提交了事务，当singo扣款时，系统检查到singo的工资卡已经没有钱，扣款失败，singo十分纳闷，明明卡里有钱，为 何……</p>
-<p>出现上述情况，即我们所说的不可重复读 ，两个并发的事务，“事务A：singo消费”、“事务B：singo的老婆网上转账”，事务A事先读取了数据，事务B紧接了更新了数据，并提交了事务，而事务A再次读取该数据时，数据已经发生了改变。</p>
-<p>当隔离级别设置为Read committed 时，避免了脏读，但是可能会造成不可重复读。</p>
-<p>大多数数据库的默认级别就是Read committed，比如Sql Server , Oracle。如何解决不可重复读这一问题，请看下一个隔离级别。</p>
-<h2 id="Repeatable-read-重复读"><a href="#Repeatable-read-重复读" class="headerlink" title="Repeatable read 重复读"></a>Repeatable read 重复读</h2><p>当隔离级别设置为Repeatable read 时，可以避免不可重复读。当singo拿着工资卡去消费时，一旦系统开始读取工资卡信息（即事务开始），singo的老婆就不可能对该记录进行修改，也就是singo的老婆不能在此时转账。</p>
-<p>虽然Repeatable read避免了不可重复读，但还有可能出现幻读 。</p>
-<p>singo的老婆工作在银行部门，她时常通过银行内部系统查看singo的信用卡消费记录。有一天，她正在查询到singo当月信用卡的总消费金额 （select sum(amount) from transaction where month = 本月）为80元，而singo此时正好在外面胡吃海塞后在收银台买单，消费1000元，即新增了一条1000元的消费记录（insert transaction … ），并提交了事务，随后singo的老婆将singo当月信用卡消费的明细打印到A4纸上，却发现消费总额为1080元，singo的老婆很诧异，以为出 现了幻觉，幻读就这样产生了。</p>
-<p>注：Mysql的默认隔离级别就是Repeatable read。</p>
-<h2 id="Serializable-序列化"><a href="#Serializable-序列化" class="headerlink" title="Serializable 序列化"></a>Serializable 序列化</h2><p>Serializable 是最高的事务隔离级别，同时代价也花费最高，性能很低，一般很少使用，在该级别下，事务顺序执行，不仅可以避免脏读、不可重复读，还避免了幻像读。</p>
-<h1 id="0X2-脏读、幻读、不可重复读"><a href="#0X2-脏读、幻读、不可重复读" class="headerlink" title="0X2 脏读、幻读、不可重复读"></a>0X2 脏读、幻读、不可重复读</h1><h2 id="脏读："><a href="#脏读：" class="headerlink" title="脏读："></a>脏读：</h2><p>脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时，另外一个事务也访问这个数据，然后使用了这个数据。</p>
-<h2 id="不可重复读："><a href="#不可重复读：" class="headerlink" title="不可重复读："></a>不可重复读：</h2><p>是指在一个事务内，多次读同一数据。在这个事务还没有结束时，另外一个事务也访问该同一数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改，那么第一个事务两次读到的的数据可能是不一样的。这样就发生了在一个事务内两次读到的数据是不一样的，因此称为是不可重复读。（即不能读到相同的数据内容）<br>例如，一个编辑人员两次读取同一文档，但在两次读取之间，作者重写了该文档。当编辑人员第二次读取文档时，文档已更改。原始读取不可重复。如果只有在作者全部完成编写后编辑人员才可以读取文档，则可以避免该问题。</p>
-<h2 id="幻读"><a href="#幻读" class="headerlink" title="幻读:"></a>幻读:</h2><p>是指当事务不是独立执行时发生的一种现象，例如第一个事务对一个表中的数据进行了修改，这种修改涉及到表中的全部数据行。同时，第二个事务也修改这个表中的数据，这种修改是向表中插入一行新数据。那么，以后就会发生操作第一个事务的用户发现表中还有没有修改的数据行，就好象<br>发生了幻觉一样。<br>例如，一个编辑人员更改作者提交的文档，但当生产部门将其更改内容合并到该文档的主复本时，发现作者已将未编辑的新材料添加到该文档中。如果在编辑人员和生产部门完成对原始文档的处理之前，任何人都不能将新材料添加到文档中，则可以避免该问题。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -514,11 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/" itemprop="url">
-                  由火币k线爬虫引出的-- http长链接问题
-                </a>
+          <h1 class="post-title" itemprop="name headline">由火币k线爬虫引出的-- http长链接问题
               
             
           </h1>
@@ -593,9 +383,7 @@
       
 
       
-        
-          
-            <h1 id="0X00-背景"><a href="#0X00-背景" class="headerlink" title="0X00 背景"></a>0X00 背景</h1><p>在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。</p>
+        <h1 id="0X00-背景"><a href="#0X00-背景" class="headerlink" title="0X00 背景"></a>0X00 背景</h1><p>在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。</p>
 <h1 id="0X01-起因"><a href="#0X01-起因" class="headerlink" title="0X01 起因"></a>0X01 起因</h1><p>问题的原因在于，火币在github上提供的Python SDK中，直接使用requests.get()和requests.post()。导致每次请求都会不断建/拆连接，作为主动关闭方，频繁的建/拆tcp连接，必定导致大量的TIME_WAIT。</p>
 <p>了解到起因后修改了一下火币的SDK，利用request.session来保持长链接。效果很棒，不但减少了TIME_WAIT的产生，还提升了请求速度。</p>
 <p>修改之前：<br>    use 1.104477 seconds </p>
@@ -624,8 +412,6 @@
 <p><br><br></p>
 <font color="ff0000">版权声明：本文为原创，欢迎转载，转载请注明出处，勿用于商业用途！</font>
 
-          
-        
       
     </div>
 
@@ -643,14 +429,40 @@
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/blog/tags/http/" rel="tag"># http</a>
+          
+            <a href="/blog/tags/长链接/" rel="tag"># 长链接</a>
+          
+            <a href="/blog/tags/requests/" rel="tag"># requests</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/" rel="prev" title="数据库事务隔离级别-- 脏读、幻读、不可重复读">
+                数据库事务隔离级别-- 脏读、幻读、不可重复读 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -660,14 +472,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -688,8 +501,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -757,6 +579,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0X00-背景"><span class="nav-number">1.</span> <span class="nav-text">0X00 背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0X01-起因"><span class="nav-number">2.</span> <span class="nav-text">0X01 起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0X02-反问"><span class="nav-number">3.</span> <span class="nav-text">0X02 反问</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -887,6 +725,10 @@
   
 
   
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=6.4.1"></script>
+
+
 
   
 
