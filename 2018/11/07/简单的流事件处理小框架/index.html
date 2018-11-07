@@ -108,31 +108,25 @@
 
 
 
-  <meta name="description" content="0X00 背景在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。">
-<meta name="keywords" content="http,长链接,requests">
+  <meta name="description" content="简单的流事件处理小程序，用一下你就知道!">
+<meta name="keywords" content="open source">
 <meta property="og:type" content="article">
-<meta property="og:title" content="由火币k线爬虫引出的-- http长链接问题">
-<meta property="og:url" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/index.html">
+<meta property="og:title" content="简单的流事件处理小框架">
+<meta property="og:url" content="http://cinjoseph.github.io/blog/2018/11/07/简单的流事件处理小框架/index.html">
 <meta property="og:site_name" content="约瑟夫.岑">
-<meta property="og:description" content="0X00 背景在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。">
+<meta property="og:description" content="简单的流事件处理小程序，用一下你就知道!">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/1.png">
-<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/2.png">
-<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/3.png">
-<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/4.png">
-<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/5.png">
-<meta property="og:updated_time" content="2018-09-21T07:37:07.659Z">
+<meta property="og:updated_time" content="2018-11-07T10:43:24.952Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="由火币k线爬虫引出的-- http长链接问题">
-<meta name="twitter:description" content="0X00 背景在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。">
-<meta name="twitter:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/1.png">
+<meta name="twitter:title" content="简单的流事件处理小框架">
+<meta name="twitter:description" content="简单的流事件处理小程序，用一下你就知道!">
 
 
 
 
 
 
-  <link rel="canonical" href="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/"/>
+  <link rel="canonical" href="http://cinjoseph.github.io/blog/2018/11/07/简单的流事件处理小框架/"/>
 
 
 
@@ -142,7 +136,7 @@
   };
 </script>
 
-  <title>由火币k线爬虫引出的-- http长链接问题 | 约瑟夫.岑</title>
+  <title>简单的流事件处理小框架 | 约瑟夫.岑</title>
   
 
 
@@ -307,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/blog/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/">
+    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/blog/blog/2018/11/07/简单的流事件处理小框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cinjoseph">
@@ -324,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">由火币k线爬虫引出的-- http长链接问题
+          <h1 class="post-title" itemprop="name headline">简单的流事件处理小框架
               
             
           </h1>
@@ -349,24 +343,12 @@
                 
               
 
-              <time title="创建时间：2018-07-10 18:50:31" itemprop="dateCreated datePublished" datetime="2018-07-10T18:50:31+08:00">2018-07-10</time>
+              <time title="创建时间：2018-11-07 18:36:35 / 修改时间：18:43:24" itemprop="dateCreated datePublished" datetime="2018-11-07T18:36:35+08:00">2018-11-07</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-09-21 15:37:07" itemprop="dateModified" datetime="2018-09-21T15:37:07+08:00">2018-09-21</time>
               
             
           </span>
@@ -403,6 +385,8 @@
           
 
           
+              <div class="post-description">简单的流事件处理小程序，用一下你就知道!</div>
+          
 
         </div>
       </header>
@@ -417,35 +401,137 @@
       
 
       
-        <h1 id="0X00-背景"><a href="#0X00-背景" class="headerlink" title="0X00 背景"></a>0X00 背景</h1><p>在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。</p>
-<h1 id="0X01-起因"><a href="#0X01-起因" class="headerlink" title="0X01 起因"></a>0X01 起因</h1><p>问题的原因在于，火币在github上提供的Python SDK中，直接使用requests.get()和requests.post()。导致每次请求都会不断建/拆连接，作为主动关闭方，频繁的建/拆tcp连接，必定导致大量的TIME_WAIT。</p>
-<p>了解到起因后修改了一下火币的SDK，利用request.session来保持长链接。效果很棒，不但减少了TIME_WAIT的产生，还提升了请求速度。</p>
-<p>修改之前：<br>    use 1.104477 seconds </p>
-<p>修改之后：<br>    use 0.385232 seconds</p>
-<h1 id="0X02-反问"><a href="#0X02-反问" class="headerlink" title="0X02 反问"></a>0X02 反问</h1><p>找到了问题原因，还修改了火币SDK分享给了群里的韭菜们。开开心心的扭头跟叶老师分享我的成果。但叶老师反问了一个很专业的问题，你说的长链接，是说的那个keep-alive么？</p>
-<p>长连接？keep-alive? 恩，我也不知道是哪种，不过可以抓包看一下。但抓包之前要先抛出假设。经过我和叶老师激烈的讨(si)论(bi)我做了如下假设：</p>
-<pre><code>1、http不带有keep-alive的话，服务器再完成请求后会主动断开连接
-2、requests.get() 发起的http请求不带有keep-alive，所以请求完成后，服务器会把连接接断开。
-3、session.get() 发起的http请求带有keep-alive，请求完成后服务器非意外情况不会断开连接，由客户端控制连接长短
-</code></pre><p>下面就是抓包<br>第一个场景：调用requests.get()，观察http是否带有keep-alive，服务器 or 客户端 主动断开连接</p>
-<p>源码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">    </span><br><span class="line">HEADERS = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:44.0) Gecko/20100101 Firefox/44.0'</span>,</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">url = <span class="string">"http://www.163.com"</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line"><span class="comment">#r = self.session.get(url)</span></span><br><span class="line"><span class="keyword">print</span> r</span><br><span class="line">    </span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-<p>这是我访问<a href="http://www.163.com的包。可以看到requests.get()里面其实是带有keep-alive的。跟我预想的不太一样。" target="_blank" rel="noopener">www.163.com的包。可以看到requests.get()里面其实是带有keep-alive的。跟我预想的不太一样。</a></p>
-<p><img src="/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/1.png" alt="avatar"></p>
-<p>再看一下连接断开的包，其实也是客户端主动断开的。</p>
-<p><img src="/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/2.png" alt="avatar"></p>
-<p>恩，看来有keep-alive的时候确实服务器不会主动断开链接。</p>
-<p>那我们尝试一下把keep-alive干掉，服务器会不会主动断开连接？<br>因为用的是requests库，而且keep-alive是默认加上的，只能去库里面把代码注释掉了。</p>
-<p>注释位置如下：requests/utils.py ：741</p>
-<p><img src="/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/3.png" alt="avatar"></p>
-<p>注释掉代码后，再次发起请求看一下，确实没有了keep-alive</p>
-<p><img src="/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/4.png" alt="avatar"></p>
-<p>但是好像还是客户端断开的连接。为什么呢？后来查了查可能跟nginx的特性有关，这个后续再专门来研究吧。</p>
-<p><img src="/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/5.png" alt="avatar"></p>
-<p>总之到此为止，前两个假设都已经错误了。不过倒是可以确定一点。request.get会自己断开连接，确实是短连接，哈哈。</p>
-<p><br><br></p>
-<font color="ff0000">版权声明：本文为原创，欢迎转载，转载请注明出处，勿用于商业用途！</font>
+        <p>自己写的开源流事件处理小程序<br>地址:<a href="https://github.com/cinjoseph/proc_stream" target="_blank" rel="noopener">https://github.com/cinjoseph/proc_stream</a></p>
+<p><br></p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><pre><code>.
+├── README.md
+├──/conf            # 配置文件目录
+│   ├── config.json         # 流事件配置
+│   └── run.cfg             # 运行配置
+├──/plugin      # 外置插件，可用户自定义
+│   ├──/nodes               # 用户自定义 节点 代码
+│   ├──/triggers            # 用户自定义 触发器 代码
+│   └──/heatbeats           # 用户自定义 心跳 代码
+├── run         # 启动脚本
+├──/stream      # 程序代码
+│   ├──/build_in_nodes      # 内置 节点 代码
+│   ├──/build_in_triggers   # 内置 触发器 代码
+│   └──/build_in_heartbeats # 内置 心跳 代码
+└──/var
+    ├──/log     # 日志目录
+    └──/run     # pidfile目录
+</code></pre><p><br></p>
+<h2 id="处理逻辑"><a href="#处理逻辑" class="headerlink" title="处理逻辑"></a>处理逻辑</h2><pre><code>                                  output_Node2
+                                       /\
+                                       ||
+ Event --&gt; Trigger --&gt; handler_Node1 --   --&gt; handler_Node3 --&gt; End
+                       \ ************ Stream ************ /
 
+
+ProcStream的逻辑单元分为 Event、Trigger、Stream、 Node
+Event（事件）：Trigger收集到的一个最小单元，一般为一条消息，或某个事件的发生
+Trigger（触发器）：负责Event的收集/产生，当一个事件到来/发生时，进行一次触发，并将触发的事件递交给Stream进行处理
+Stream（流）：负责按照既定流程处理Trigger递交的事件，Stream由若干个Node组成
+Node（节点）：Node是处理事件的最小单元，节点依附于Stream存在，不能单独存在。Node存在两种类型：output、handler，
+    output-Node：Stream不关心Output—Node的结果返回，所以不会Output—Node的结果进行等待，对在处理流程中，当一个Event递交给output-Node后，会立即将Event传递给下一个Node进行处理。一般output-Node作为输出使用，例如数据入库，通知等。
+    handler-Node：Stream关心handler-Node的返回，handler-Node可能对Event进行继续/更新/丢弃等动作。Stream会根据不同的动作采取不同的动作。当handler-Node的处理结果返回，且结果不为丢弃时，才会把Event继续向后传递。
+</code></pre><p><br></p>
+<h2 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h2><p>conf/run.cfg</p>
+<pre><code># -*- coding:utf-8 -*-
+import os
+
+abs_path = os.path.abspath(__file__).rsplit(&apos;/&apos;, 2)[0]
+base_dir = abs_path # 自动识别根目录
+
+STDIN   = &quot;/dev/null&quot;
+STDOUT  = base_dir + &apos;/var/log/err.log&apos;
+STDERR  = base_dir + &apos;/var/log/err.log&apos;
+DEFAULT_STDERR = base_dir + &apos;/var/log/err.log&apos;
+
+HEART_BEAT_INTERVAL = 1     # 心跳函数调用频率
+STREAM_CONTROLLER_POLL_TIME = 0.1       # stream controller 获取runtime info 间隔
+
+PID_FILE = base_dir + &apos;/var/run/sdp_id_engine.pid&apos;
+PID_FILE_TIMEOUT = 3
+
+LOG_FILE = base_dir + &apos;/var/log/run.log&apos;
+LOG_LEVEL = &quot;debug&quot;
+
+CONF_FILE_PATH = base_dir + &apos;/conf/config.json&apos; # 指定stream conf 位置
+</code></pre><p><br></p>
+<p>conf/config.json</p>
+<pre><code>{
+     // 心跳调用配置块
+     // 每次心跳会调用在下面配置的所有模块
+    &quot;HeartBeat&quot;:{
+       &quot;LoggerHeartBeat&quot;: {
+            &quot;module&quot;: &quot;stream.build_in_heartbeats.logger_heart_beat.LoggerHeartBeat&quot;
+        }
+    },
+
+     // 触发器模板
+    &quot;TriggerTemplate&quot;: {
+        &quot;RabbitMQTrigger&quot;: {
+            &quot;module&quot;: &quot;stream.build_in_triggers.rmq_trigger.RabbitMQTrigger&quot;,
+            &quot;args&quot;:{
+                &quot;url&quot;: &quot;amqp://user:pass@host:port/%2F.queue&quot;,
+                &quot;need_ack&quot;: false,
+                &quot;mode&quot;: &quot;normal&quot;
+            }
+        },
+        &quot;TimerTrigger&quot;: {
+            &quot;module&quot;: &quot;stream.build_in_triggers.test_trigger.TimerTrigger&quot;,
+            &quot;pool_size&quot; : 2,
+            &quot;args&quot;: {
+                &quot;poll_time&quot;: 1
+            }
+        }
+    },
+
+     // 处理节点模板
+    &quot;NodeTemplate&quot;: {
+
+        &quot;PrintNode&quot; : {
+            &quot;module&quot;: &quot;stream.build_in_nodes.test_node.PrintNode&quot;,
+        },
+        &quot;AddTailNode&quot; : {
+            &quot;module&quot;: &quot;stream.build_in_nodes.test_node.AddTailNode&quot;,
+            &quot;pool_size&quot;: 1
+        },
+        &quot;DelayNode&quot; : {
+            &quot;module&quot;: &quot;stream.build_in_nodes.test_node.DelayNode&quot;,
+            &quot;pool_size&quot;: 1,
+            &quot;mode&quot;: &quot;thread&quot;,
+            &quot;args&quot;:{
+                &quot;loop&quot;: 5
+            }
+
+        }
+    },
+
+     // 流定义
+    &quot;Streams&quot;: {
+        &quot;TestStream&quot;: {
+            &quot;trigger&quot;: [&quot;TimerTrigger&quot;],
+            &quot;process&quot;: [&quot;AddTailNode&quot;, &quot;DelayNode&quot;, &quot;PrintNode&quot;]
+        },
+        &quot;RmqTestStream&quot;: {
+            &quot;trigger&quot;: [&quot;RabbitMQTrigger&quot;],
+            &quot;process&quot;: [&quot;AddTailNode&quot;, &quot;DelayNode&quot;, &quot;PrintNode&quot;]
+        }
+    }
+}
+</code></pre><p><br></p>
+<h2 id="如何启动"><a href="#如何启动" class="headerlink" title="如何启动"></a>如何启动</h2><pre><code>./run start|stop|restart [options]
+Options
+  -f            Run as a foreground process, not a daemon.
+  -c            Set configuration file path.
+  -h            Show help.  ./run
+</code></pre><p><br></p>
+<h2 id="先试一下？"><a href="#先试一下？" class="headerlink" title="先试一下？"></a>先试一下？</h2><pre><code>框架中已经有集成好的Test的配置，也有集成好的示例代码。
+为何不直接./run -f跑起来看下效果呢？
+</code></pre><p><br></p>
+<h2 id="——-Code-is-Cheap-Let’s-Talk-——"><a href="#——-Code-is-Cheap-Let’s-Talk-——" class="headerlink" title="—— Code is Cheap, Let’s Talk! ——"></a>—— Code is Cheap, Let’s Talk! ——</h2>
       
     </div>
 
@@ -465,11 +551,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/http/" rel="tag"># http</a>
-          
-            <a href="/blog/tags/长链接/" rel="tag"># 长链接</a>
-          
-            <a href="/blog/tags/requests/" rel="tag"># requests</a>
+            <a href="/blog/tags/open-source/" rel="tag"># open source</a>
           
         </div>
       
@@ -482,15 +564,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/blog/2018/09/27/Linux内存管理-基于用户编程角度分析/" rel="next" title="Linux内存管理(基于用户编程角度分析)">
+                <i class="fa fa-chevron-left"></i> Linux内存管理(基于用户编程角度分析)
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/07/25/Docker-搭建SSR/" rel="prev" title="Docker 搭建SSR">
-                Docker 搭建SSR <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -644,7 +726,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0X00-背景"><span class="nav-number">1.</span> <span class="nav-text">0X00 背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0X01-起因"><span class="nav-number">2.</span> <span class="nav-text">0X01 起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0X02-反问"><span class="nav-number">3.</span> <span class="nav-text">0X02 反问</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构"><span class="nav-number">1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理逻辑"><span class="nav-number">2.</span> <span class="nav-text">处理逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件："><span class="nav-number">3.</span> <span class="nav-text">配置文件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何启动"><span class="nav-number">4.</span> <span class="nav-text">如何启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先试一下？"><span class="nav-number">5.</span> <span class="nav-text">先试一下？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#——-Code-is-Cheap-Let’s-Talk-——"><span class="nav-number">6.</span> <span class="nav-text">—— Code is Cheap, Let’s Talk! ——</span></a></li></ol></div>
             
 
           </div>
