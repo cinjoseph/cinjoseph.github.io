@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="都虚拟了还有关键概念？">
+<meta name="keywords" content="linux,内存管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[转]关于Linux的虚拟内存的几个关键概念">
+<meta property="og:url" content="http://cinjoseph.github.io/2016/12/02/转-关于Linux的虚拟内存的几个关键概念/index.html">
+<meta property="og:site_name" content="约瑟夫.岑">
+<meta property="og:description" content="都虚拟了还有关键概念？">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-24T06:27:43.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[转]关于Linux的虚拟内存的几个关键概念">
+<meta name="twitter:description" content="都虚拟了还有关键概念？">
+
+
+
+
+
+
+  <link rel="canonical" href="http://cinjoseph.github.io/2016/12/02/转-关于Linux的虚拟内存的几个关键概念/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[转]关于Linux的虚拟内存的几个关键概念 | 约瑟夫.岑</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">约瑟夫.岑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">莫听穿林打叶声，何妨吟啸且徐行</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/2016/12/02/转-关于Linux的虚拟内存的几个关键概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cinjoseph">
+      <meta itemprop="description" content="Fuck The World">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="约瑟夫.岑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[转]关于Linux的虚拟内存的几个关键概念
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-12-02 14:22:51" itemprop="dateCreated datePublished" datetime="2016-12-02T14:22:51+08:00">2016-12-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-24 14:27:43" itemprop="dateModified" datetime="2018-11-24T14:27:43+08:00">2018-11-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/02/转-关于Linux的虚拟内存的几个关键概念/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/12/02/转-关于Linux的虚拟内存的几个关键概念/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">都虚拟了还有关键概念？</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>1.每个进程有独立的虚拟地址空间，进程访问的虚拟地址并不是真正的物理地址</p>
+<p>2.虚拟地址可通过每个进程的页表与物理地址进行映射，获得真正物理地址</p>
+<p>3.如果虚拟地址对应的物理地址不在物理内存中，则产生缺页中断，并真正分配物理地址，同时更新进程的页表；如果此时物理内存已耗尽，则根据内存替换算法淘汰部分页面至物理磁盘中。</p>
+<h1 id="Linux进程虚拟地址分布"><a href="#Linux进程虚拟地址分布" class="headerlink" title="Linux进程虚拟地址分布"></a>Linux进程虚拟地址分布</h1><p>Linux使用虚拟地址空间，大大增加了进程的寻址空间，由低地址到高地址分别为</p>
+<p>只读段：该部分空间只能读，不可写。包括代码段、rodata段（C常量字符串和#define定义的常量）</p>
+<p>数据段：保存全局变量、静态变量的空间</p>
+<p>堆：就是平时所说的动态内存， malloc/new大部分都来源于此。其中堆顶的位置可通过函数brk和sbrk进行动态调整。</p>
+<p>文件映射区域：如动态库、共享内存等映射物理空间的内存，一般是mmap函数所分配的虚拟地址空间。</p>
+<p>栈：用于维护函数调用的上下文空间，一般为8M，可通过ulimit –s查看。</p>
+<p>内核虚拟空间：用户代码不可见的内存区域，由内核管理。 </p>
+<p>32位系统有4G的地址空间，其中0x08048000~0xbfffffff 是用户空间，0xc0000000~0xffffffff是内核空间，包括内核代码和数据、与进程相关的数据结构（如页表、内核栈等）。</p>
+<p>64位Linux一般使用48位来表示虚拟地址空间，40位表示物理地址，这可通过 /proc/cpuinfo 来查看<br>address sizes   : 40 bits physical, 48 bits virtual</p>
+<h1 id="malloc是如何分配内存的？"><a href="#malloc是如何分配内存的？" class="headerlink" title="malloc是如何分配内存的？"></a>malloc是如何分配内存的？</h1><p>malloc是glibc中内存分配函数，也是最常用的动态内存分配函数，其内存必须通过free进行释放，否则导致内存泄露。关于 malloc 获得虚存空间的实现，与glibc的版本有关，但大体逻辑是：</p>
+<p>1.申请128k以内的内存，调用sbrk()，在堆内分配，将堆顶指针向高地址移动，获得新的虚存空间。虚拟地址比较小。</p>
+<p>2.每次分配的内存地址前16字节（64位系统，32位是8字节）是记录该内存块的控制信息（用于 free ）。</p>
+<p>3.并不是每次malloc都会导致堆顶的增大，如果堆内有足够剩余空间，堆顶不会发生变化。</p>
+<p>4.当分配大小大于128k，使用mmap在文件映射区域中分配匿名虚存空间获得地址空间，地址一般比较大（靠近栈区间）</p>
+<p>5.可通过函数mallopt(M_MMAP_THRESHOLD, 64*1024) 修改使用 mmap 的临界值为 64k ，后续大于 64k 的分配就会使用 mmap.</p>
+<h1 id="malloc分配多大的内存，就占用多大的物理内存空间吗？"><a href="#malloc分配多大的内存，就占用多大的物理内存空间吗？" class="headerlink" title="malloc分配多大的内存，就占用多大的物理内存空间吗？"></a>malloc分配多大的内存，就占用多大的物理内存空间吗？</h1><p>malloc分配的的内存是虚拟地址空间</p>
+<p>1.VSZ并不是每次malloc后都增长，因为可重用堆顶内剩余的空间，这样的malloc是很轻量快速的。</p>
+<p>2.如果VSZ发生变化，基本与分配内存量相当，因为VSZ是计算虚拟地址空间总大小。 </p>
+<p>3.RSS的增量很少，是因为malloc分配的内存并不就马上分配实际存储空间，只有第一次使用，发现虚存对应的物理页面未分配，产生缺页中断，才真正分配物理页面，同时更新进程页面的映射关系（按需分配）。</p>
+<p>4.由于每个物理内存页面大小是4k，不管memset其中的1k还是5k、7k，实际占用物理内存总是4k的倍数。所以RSS的增量总是4k的倍数。</p>
+<h1 id="如何查看进程虚拟地址空间的使用情况？"><a href="#如何查看进程虚拟地址空间的使用情况？" class="headerlink" title="如何查看进程虚拟地址空间的使用情况？"></a>如何查看进程虚拟地址空间的使用情况？</h1><p>pmap</p>
+<h1 id="free的内存真的释放了"><a href="#free的内存真的释放了" class="headerlink" title="free的内存真的释放了?"></a>free的内存真的释放了?</h1><p>使用mmap分配的内存会调用munmap系统调用来释放，并会真正释放该空间。</p>
+<p>free释放内存，在glibc中，仅仅是标记为可用，形成一个内存空洞(碎片)，并没有真正释放</p>
+<p>glibc的free实现中，只要堆顶附近释放总空间（包括合并的空间）超过128k，即会调用sbrk(-SIZE)来回溯堆顶指针，将原堆顶空间还给OS。否则都成为碎片（碎片如果相邻会适当合并）</p>
+<h1 id="程序代码中malloc的内存都有相应的free，就不会出现内存泄露了吗？"><a href="#程序代码中malloc的内存都有相应的free，就不会出现内存泄露了吗？" class="headerlink" title="程序代码中malloc的内存都有相应的free，就不会出现内存泄露了吗？"></a>程序代码中malloc的内存都有相应的free，就不会出现内存泄露了吗？</h1><p>随着系统频繁地malloc和free，尤其对于小块内存，堆内将产生越来越多不可用的碎片，导致“内存泄露”。而这种“泄露”现象使用valgrind是无法检测出来的。</p>
+<h1 id="既然堆内内存不能直接释放，为什么不全部使用mmap来分配？"><a href="#既然堆内内存不能直接释放，为什么不全部使用mmap来分配？" class="headerlink" title="既然堆内内存不能直接释放，为什么不全部使用mmap来分配？"></a>既然堆内内存不能直接释放，为什么不全部使用mmap来分配？</h1><p>使用mmap分配1M空间，第一次调用产生了大量缺页中断(1M/4K次)。缺页中断是内核行为，会导致内核态CPU消耗较大。</p>
+<p>堆是一个连续空间，并且堆内碎片由于没有归还OS，如果可重用碎片，再次访问该内存很可能不需产生任何系统调用和缺页中断，这将大大降低CPU的消耗。</p>
+<h1 id="如何查看进程的缺页中断信息？"><a href="#如何查看进程的缺页中断信息？" class="headerlink" title="如何查看进程的缺页中断信息？"></a>如何查看进程的缺页中断信息？</h1><p>ps -omajflt,minflt -C &lt;program_name&gt;<br>ps -omajflt,minflt -p <pid></pid></p>
+<p>其中majflt表major fault，指大错误。mnflt代表minor fault，指小错误。这两个数值表示一个进程自启动以来所发生的缺页中断的次数。其中majflt与minflt的不同是，majflt表示需要读写磁盘，可能是内存对应页面在磁盘中需要load到物理内存中，也可能是此时物理内存不足，需要淘汰部分物理页面至磁盘中</p>
+<p>如果进程的内核态CPU使用过多，其中一个原因就可能是单位时间的缺页中断次数多个，可通过以上命令来查看。</p>
+<p>如果MAJFLT过大，很可能是内存不足。</p>
+<p>如果MINFLT过大，很可能是频繁分配/释放大块内存(128k)，malloc使用mmap来分配。对于这种情况，可通过mallopt(M_MMAP_THRESHOLD, <size>)增大临界值，或程序实现内存池。</size></p>
+<h1 id="如何查看堆内内存的碎片情况"><a href="#如何查看堆内内存的碎片情况" class="headerlink" title="如何查看堆内内存的碎片情况?"></a>如何查看堆内内存的碎片情况?</h1><p>可通过mallinfo结构中的fsmblks、smblks、ordblks值得到，这些值表示不同大小区间的碎片总个数，这些区间分别是0~80字节，80~512字节，512~128k。如果fsmblks、 smblks的值过大，那碎片问题可能比较严重了</p>
+<h1 id="除了glibc的malloc-free，还有其他第三方实现吗？"><a href="#除了glibc的malloc-free，还有其他第三方实现吗？" class="headerlink" title="除了glibc的malloc/free，还有其他第三方实现吗？"></a>除了glibc的malloc/free，还有其他第三方实现吗？</h1><p>google的tcmalloc和facebook的jemalloc</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/内存管理/" rel="tag"># 内存管理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/24/转-Linux下解决time-wait连接过多/" rel="next" title="[转] Linux下解决time_wait连接过多">
+                <i class="fa fa-chevron-left"></i> [转] Linux下解决time_wait连接过多
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/24/Close-wait和Time-Wait/" rel="prev" title="Close_wait和Time_Wait">
+                Close_wait和Time_Wait <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cinjoseph</p>
+              <p class="site-description motion-element" itemprop="description">Fuck The World</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux进程虚拟地址分布"><span class="nav-number">2.</span> <span class="nav-text">Linux进程虚拟地址分布</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#malloc是如何分配内存的？"><span class="nav-number">3.</span> <span class="nav-text">malloc是如何分配内存的？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#malloc分配多大的内存，就占用多大的物理内存空间吗？"><span class="nav-number">4.</span> <span class="nav-text">malloc分配多大的内存，就占用多大的物理内存空间吗？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何查看进程虚拟地址空间的使用情况？"><span class="nav-number">5.</span> <span class="nav-text">如何查看进程虚拟地址空间的使用情况？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#free的内存真的释放了"><span class="nav-number">6.</span> <span class="nav-text">free的内存真的释放了?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程序代码中malloc的内存都有相应的free，就不会出现内存泄露了吗？"><span class="nav-number">7.</span> <span class="nav-text">程序代码中malloc的内存都有相应的free，就不会出现内存泄露了吗？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#既然堆内内存不能直接释放，为什么不全部使用mmap来分配？"><span class="nav-number">8.</span> <span class="nav-text">既然堆内内存不能直接释放，为什么不全部使用mmap来分配？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何查看进程的缺页中断信息？"><span class="nav-number">9.</span> <span class="nav-text">如何查看进程的缺页中断信息？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何查看堆内内存的碎片情况"><span class="nav-number">10.</span> <span class="nav-text">如何查看堆内内存的碎片情况?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#除了glibc的malloc-free，还有其他第三方实现吗？"><span class="nav-number">11.</span> <span class="nav-text">除了glibc的malloc/free，还有其他第三方实现吗？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cinjoseph</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.4.1</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://cinjoseph-github-io.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://cinjoseph.github.io/2016/12/02/转-关于Linux的虚拟内存的几个关键概念/';
+        this.page.identifier = '2016/12/02/转-关于Linux的虚拟内存的几个关键概念/';
+        this.page.title = '[转]关于Linux的虚拟内存的几个关键概念';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cinjoseph-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
