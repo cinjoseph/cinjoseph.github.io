@@ -112,23 +112,23 @@
 <meta name="keywords" content="mysql,事务">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库事务隔离级别-- 脏读、幻读、不可重复读">
-<meta property="og:url" content="http://cinjoseph.github.io/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/index.html">
+<meta property="og:url" content="http://cinjoseph.github.io/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/index.html">
 <meta property="og:site_name" content="约瑟夫.岑">
 <meta property="og:description" content="0X1 数据库事务隔离级别数据库事务的隔离级别有4个，由低到高依次为 - Read uncommitted  - Read committed  - Repeatable read  - Serializable  这四个级别可以逐个解决脏读 、不可重复读 、幻读 这几类问题。 V: 可能出现    ×: 不会出现     脏读 不可重复读 幻读      Read uncommitted V V">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/1.gif">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/1.gif">
 <meta property="og:updated_time" content="2018-09-21T07:41:47.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库事务隔离级别-- 脏读、幻读、不可重复读">
 <meta name="twitter:description" content="0X1 数据库事务隔离级别数据库事务的隔离级别有4个，由低到高依次为 - Read uncommitted  - Read committed  - Repeatable read  - Serializable  这四个级别可以逐个解决脏读 、不可重复读 、幻读 这几类问题。 V: 可能出现    ×: 不会出现     脏读 不可重复读 幻读      Read uncommitted V V">
-<meta name="twitter:image" content="http://cinjoseph.github.io/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/1.gif">
+<meta name="twitter:image" content="http://cinjoseph.github.io/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/1.gif">
 
 
 
 
 
 
-  <link rel="canonical" href="http://cinjoseph.github.io/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/"/>
+  <link rel="canonical" href="http://cinjoseph.github.io/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/"/>
 
 
 
@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/">
+    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cinjoseph">
@@ -389,6 +389,18 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -466,7 +478,7 @@
 </table>
 <p>注意：我们讨论隔离级别的场景，主要是在多个事务并发 的情况下，因此，接下来的讲解都围绕事务并发。</p>
 <h2 id="Read-uncommitted-读未提交"><a href="#Read-uncommitted-读未提交" class="headerlink" title="Read uncommitted 读未提交"></a>Read uncommitted 读未提交</h2><p>公司发工资了，领导把5000元打到singo的账号上，但是该事务并未提交，而singo正好去查看账户，发现工资已经到账，是5000元整，非常高 兴。可是不幸的是，领导发现发给singo的工资金额不对，是2000元，于是迅速回滚了事务，修改金额后，将事务提交，最后singo实际的工资只有 2000元，singo空欢喜一场。</p>
-<p><img src="/blog/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/1.gif" alt="avatar"></p>
+<p><img src="/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/1.gif" alt="avatar"></p>
 <p>出现上述情况，即我们所说的脏读 ，两个并发的事务，“事务A：领导给singo发工资”、“事务B：singo查询工资账户”，事务B读取了事务A尚未提交的数据。</p>
 <p>当隔离级别设置为Read uncommitted 时，就可能出现脏读，如何避免脏读，请看下一个隔离级别。</p>
 <h2 id="Read-committed-读提交"><a href="#Read-committed-读提交" class="headerlink" title="Read committed 读提交"></a>Read committed 读提交</h2><p>singo拿着工资卡去消费，系统读取到卡里确实有2000元，而此时她的老婆也正好在网上转账，把singo工资卡的2000元转到另一账户，并在 singo之前提交了事务，当singo扣款时，系统检查到singo的工资卡已经没有钱，扣款失败，singo十分纳闷，明明卡里有钱，为 何……</p>
@@ -551,6 +563,16 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
 
   
 
@@ -860,9 +882,30 @@
 
   
 
-
+  
+    <script id="dsq-count-scr" src="https://cinjoseph.disqus.com/count.js" async></script>
+  
 
   
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://cinjoseph.github.io/2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/';
+        this.page.identifier = '2018/08/17/数据库事务隔离级别-脏读、幻读、不可重复读/';
+        this.page.title = '数据库事务隔离级别-- 脏读、幻读、不可重复读';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cinjoseph.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
 
 
 

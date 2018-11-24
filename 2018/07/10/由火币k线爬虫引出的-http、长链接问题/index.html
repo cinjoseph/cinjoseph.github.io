@@ -112,27 +112,27 @@
 <meta name="keywords" content="http,长链接,requests">
 <meta property="og:type" content="article">
 <meta property="og:title" content="由火币k线爬虫引出的-- http长链接问题">
-<meta property="og:url" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/index.html">
+<meta property="og:url" content="http://cinjoseph.github.io/2018/07/10/由火币k线爬虫引出的-http、长链接问题/index.html">
 <meta property="og:site_name" content="约瑟夫.岑">
 <meta property="og:description" content="0X00 背景在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/1.png">
-<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/2.png">
-<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/3.png">
-<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/4.png">
-<meta property="og:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/5.png">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/07/10/由火币k线爬虫引出的-http、长链接问题/1.png">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/07/10/由火币k线爬虫引出的-http、长链接问题/2.png">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/07/10/由火币k线爬虫引出的-http、长链接问题/3.png">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/07/10/由火币k线爬虫引出的-http、长链接问题/4.png">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/07/10/由火币k线爬虫引出的-http、长链接问题/5.png">
 <meta property="og:updated_time" content="2018-09-21T07:37:07.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="由火币k线爬虫引出的-- http长链接问题">
 <meta name="twitter:description" content="0X00 背景在一次恰巧查看vps时，发现vps存在大量的TIME_WAIT状态的连接（几百个吧也不是很大量），发现是某Python进程引起，甚觉奇怪。当时VPS上只跑有SSR和一个火币K线爬虫。当然我第一反应是怀疑到SSR，但转念一想，如果是SSR，我的梯子估计早就塌了，故怀疑到爬虫。以至后来引出了一些关于http keep-alive，tcp长连接和python requests的一些思考。">
-<meta name="twitter:image" content="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/1.png">
+<meta name="twitter:image" content="http://cinjoseph.github.io/2018/07/10/由火币k线爬虫引出的-http、长链接问题/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/"/>
+  <link rel="canonical" href="http://cinjoseph.github.io/2018/07/10/由火币k线爬虫引出的-http、长链接问题/"/>
 
 
 
@@ -307,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/">
+    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/2018/07/10/由火币k线爬虫引出的-http、长链接问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cinjoseph">
@@ -393,6 +393,18 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/10/由火币k线爬虫引出的-http、长链接问题/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/10/由火币k线爬虫引出的-http、长链接问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -439,17 +451,17 @@
 <p>源码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">    </span><br><span class="line">HEADERS = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:44.0) Gecko/20100101 Firefox/44.0'</span>,</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">url = <span class="string">"http://www.163.com"</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line"><span class="comment">#r = self.session.get(url)</span></span><br><span class="line"><span class="keyword">print</span> r</span><br><span class="line">    </span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 <p>这是我访问<a href="http://www.163.com的包。可以看到requests.get()里面其实是带有keep-alive的。跟我预想的不太一样。" target="_blank" rel="noopener">www.163.com的包。可以看到requests.get()里面其实是带有keep-alive的。跟我预想的不太一样。</a></p>
-<p><img src="/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/1.png" alt="avatar"></p>
+<p><img src="/2018/07/10/由火币k线爬虫引出的-http、长链接问题/1.png" alt="avatar"></p>
 <p>再看一下连接断开的包，其实也是客户端主动断开的。</p>
-<p><img src="/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/2.png" alt="avatar"></p>
+<p><img src="/2018/07/10/由火币k线爬虫引出的-http、长链接问题/2.png" alt="avatar"></p>
 <p>恩，看来有keep-alive的时候确实服务器不会主动断开链接。</p>
 <p>那我们尝试一下把keep-alive干掉，服务器会不会主动断开连接？<br>因为用的是requests库，而且keep-alive是默认加上的，只能去库里面把代码注释掉了。</p>
 <p>注释位置如下：requests/utils.py ：741</p>
-<p><img src="/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/3.png" alt="avatar"></p>
+<p><img src="/2018/07/10/由火币k线爬虫引出的-http、长链接问题/3.png" alt="avatar"></p>
 <p>注释掉代码后，再次发起请求看一下，确实没有了keep-alive</p>
-<p><img src="/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/4.png" alt="avatar"></p>
+<p><img src="/2018/07/10/由火币k线爬虫引出的-http、长链接问题/4.png" alt="avatar"></p>
 <p>但是好像还是客户端断开的连接。为什么呢？后来查了查可能跟nginx的特性有关，这个后续再专门来研究吧。</p>
-<p><img src="/blog/2018/07/10/由火币k线爬虫引出的-http、长链接问题/5.png" alt="avatar"></p>
+<p><img src="/2018/07/10/由火币k线爬虫引出的-http、长链接问题/5.png" alt="avatar"></p>
 <p>总之到此为止，前两个假设都已经错误了。不过倒是可以确定一点。request.get会自己断开连接，确实是短连接，哈哈。</p>
 <p><br><br></p>
 <font color="ff0000">版权声明：本文为原创，欢迎转载，转载请注明出处，勿用于商业用途！</font>
@@ -519,6 +531,16 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
 
   
 
@@ -828,9 +850,30 @@
 
   
 
-
+  
+    <script id="dsq-count-scr" src="https://cinjoseph.disqus.com/count.js" async></script>
+  
 
   
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://cinjoseph.github.io/2018/07/10/由火币k线爬虫引出的-http、长链接问题/';
+        this.page.identifier = '2018/07/10/由火币k线爬虫引出的-http、长链接问题/';
+        this.page.title = '由火币k线爬虫引出的-- http长链接问题';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cinjoseph.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
 
 
 
