@@ -108,25 +108,30 @@
 
 
 
-  <meta name="description" content="记几条python 的简洁语法">
-<meta name="keywords" content="python">
+  <meta name="description" content="起因最近零信任系统终于做完了，能休息一下了 ~_~  呼~ 在做的这个零信任系统里面，有一部分是需要对大量的日志进行采集，分析出用户登录的实时信息，幻化成一条条链接（或者叫会话）。其实叫什么也好，目的就是要在大量的日志中得到用户和IP地址的映射关系。 当然，本文并不是想讲关于零信任怎么做或者是用户链接怎么获得。这些东西我日后应该会写一些文章来具体记录。本文更加偏向于在一些日志收集分析系统中，如何更">
+<meta name="keywords" content="default">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python简洁的语法">
-<meta property="og:url" content="http://cinjoseph.github.io/2018/11/24/python简洁的语法/index.html">
+<meta property="og:title" content="关于日志分析系统并发的一些思考">
+<meta property="og:url" content="http://cinjoseph.github.io/2018/12/17/关于日志分析系统并发的一些思考/index.html">
 <meta property="og:site_name" content="约瑟夫.岑">
-<meta property="og:description" content="记几条python 的简洁语法">
+<meta property="og:description" content="起因最近零信任系统终于做完了，能休息一下了 ~_~  呼~ 在做的这个零信任系统里面，有一部分是需要对大量的日志进行采集，分析出用户登录的实时信息，幻化成一条条链接（或者叫会话）。其实叫什么也好，目的就是要在大量的日志中得到用户和IP地址的映射关系。 当然，本文并不是想讲关于零信任怎么做或者是用户链接怎么获得。这些东西我日后应该会写一些文章来具体记录。本文更加偏向于在一些日志收集分析系统中，如何更">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-24T06:05:22.924Z">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/12/17/关于日志分析系统并发的一些思考/1.png">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/12/17/关于日志分析系统并发的一些思考/2.png">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/12/17/关于日志分析系统并发的一些思考/3.png">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/12/17/关于日志分析系统并发的一些思考/4.png">
+<meta property="og:updated_time" content="2018-12-17T11:19:33.321Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python简洁的语法">
-<meta name="twitter:description" content="记几条python 的简洁语法">
+<meta name="twitter:title" content="关于日志分析系统并发的一些思考">
+<meta name="twitter:description" content="起因最近零信任系统终于做完了，能休息一下了 ~_~  呼~ 在做的这个零信任系统里面，有一部分是需要对大量的日志进行采集，分析出用户登录的实时信息，幻化成一条条链接（或者叫会话）。其实叫什么也好，目的就是要在大量的日志中得到用户和IP地址的映射关系。 当然，本文并不是想讲关于零信任怎么做或者是用户链接怎么获得。这些东西我日后应该会写一些文章来具体记录。本文更加偏向于在一些日志收集分析系统中，如何更">
+<meta name="twitter:image" content="http://cinjoseph.github.io/2018/12/17/关于日志分析系统并发的一些思考/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://cinjoseph.github.io/2018/11/24/python简洁的语法/"/>
+  <link rel="canonical" href="http://cinjoseph.github.io/2018/12/17/关于日志分析系统并发的一些思考/"/>
 
 
 
@@ -136,7 +141,7 @@
   };
 </script>
 
-  <title>python简洁的语法 | 约瑟夫.岑</title>
+  <title>关于日志分析系统并发的一些思考 | 约瑟夫.岑</title>
   
 
 
@@ -301,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/2018/11/24/python简洁的语法/">
+    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/2018/12/17/关于日志分析系统并发的一些思考/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cinjoseph">
@@ -318,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python简洁的语法
+          <h1 class="post-title" itemprop="name headline">关于日志分析系统并发的一些思考
               
             
           </h1>
@@ -343,7 +348,7 @@
                 
               
 
-              <time title="创建时间：2018-11-24 13:59:54 / 修改时间：14:05:22" itemprop="dateCreated datePublished" datetime="2018-11-24T13:59:54+08:00">2018-11-24</time>
+              <time title="创建时间：2018-12-17 17:58:42 / 修改时间：19:19:33" itemprop="dateCreated datePublished" datetime="2018-12-17T17:58:42+08:00">2018-12-17</time>
             
 
             
@@ -365,7 +370,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/default/" itemprop="url" rel="index"><span itemprop="name">default</span></a></span>
 
                 
                 
@@ -380,10 +385,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/24/python简洁的语法/#comments" itemprop="discussionUrl">
+                <a href="/2018/12/17/关于日志分析系统并发的一些思考/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/24/python简洁的语法/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/12/17/关于日志分析系统并发的一些思考/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,8 +410,6 @@
           
 
           
-              <div class="post-description">记几条python 的简洁语法</div>
-          
 
         </div>
       </header>
@@ -421,20 +424,50 @@
       
 
       
-        <p>列表推导 list comprehensions:</p>
-<pre><code>&gt;&gt;&gt;  [ i for i in range(10) if i % 2 == 0 ]
-&gt;&gt;&gt; [0, 2, 4, 6, 8]
-</code></pre><p>for 循环中巧用 enumerate:</p>
-<pre><code>&gt;&gt;&gt; seq = [&apos;q&apos;, &apos;w&apos;, &apos;e&apos;, &apos;r&apos;]
-&gt;&gt;&gt; for i, s in enumerate(seq, 1):
-&gt;&gt;&gt;     print i, s
-1 q
-2 w
-3 e
-4 r
-</code></pre><p>容器、可迭代对象、迭代器、生成器</p>
-<pre><code>参考资料 http://python.jobbole.com/87805/
-</code></pre><p><br><br></p>
+        <h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近零信任系统终于做完了，能休息一下了 ~_~  呼~</p>
+<p>在做的这个零信任系统里面，有一部分是需要对大量的日志进行采集，分析出用户登录的实时信息，幻化成一条条链接（或者叫会话）。其实叫什么也好，目的就是要在大量的日志中得到用户和IP地址的映射关系。</p>
+<p>当然，本文并不是想讲关于零信任怎么做或者是用户链接怎么获得。这些东西我日后应该会写一些文章来具体记录。本文更加偏向于在一些日志收集分析系统中，如何更好的处理并发，如何保证高可靠，如何做的更易扩展等方面的一些思考。</p>
+<p>本文所述的系统使用了大部分的开源方案，他们包括但不限于：</p>
+<pre><code>1、FileBeat          https://www.elastic.co/products/beats/filebeat 
+2、Logstash        https://www.elastic.co/products/logstash
+3、RabbitMQ         https://www.rabbitmq.com/
+4、proc_stream     https://github.com/cinjoseph/proc_stream
+</code></pre><h1 id="架构的进化"><a href="#架构的进化" class="headerlink" title="架构的进化"></a>架构的进化</h1><p>最初的想法特别简单，就是想收集上来数据做一些简单的处理。所以最初的框架大概是下图这个样子<br>（图中没有画logstash，是因为Logstash只是为了接收beat上传的数据，然后转给MQ，在本系统中，他们其实逻辑上是一个节点）</p>
+<p><img src="/2018/12/17/关于日志分析系统并发的一些思考/1.png" align="center" width="300" height="300" div=""></p>
+<p>但是如此简单的系统肯定是不能拿来线上用的。即使我们这个不是一个对外业务，但是多少也得注意一些并发和可用性的问题。上图中，很明显的两个点是RMQ和Processer都是单点，如果任意一个故障，都会导致系统不可用。</p>
+<p>所以对此架构做一些小小的修改</p>
+<p><img src="/2018/12/17/关于日志分析系统并发的一些思考/2.png" align="center" width="300" height="300" div=""></p>
+<p>我把MQ和Processer都增加一个，让所有Beat都轮训往这两个MQ上面发送。</p>
+<p>这样修改后单点的问题不但解决了，而且还解决了一部分的并发问题。等于是所有的日志处理都有两个人来承担。以前一个processer可能要单秒处理100条，现在只要处理50条就足矣。</p>
+<p>但是这个架构依旧有一部分小问题，因为从mq开始，后面都是串联的。如果任何一个节点出问题，还是会导致一串节点都嗝屁。</p>
+<p>遵循有资源就不能浪费的原则，我们要把这个小架构改成任何一个节点down机不会导致其他的节点只能等待down机几点恢复，而是可以帮助其他处理流程去处理。</p>
+<p>这样改也很简单，因为Processer一般情况都是自研，只要一个Processer同时监听多个MQ的消息即可。</p>
+<p>如果只是处理简单的日志还好，但是如果处理几条日志之间是有关联的，就有可能出现日志1被采集到了左边的MQ，日志2的日志被采集到了右边。这样的话处理一定会出问题，两边可能会一直等待着另一条日志的到来。</p>
+<p>所以，在这种架构上，为了数据同步，我们还需要一个缓存，来同步各个processer中的状态和数据。</p>
+<p>架构此时演变成了这样：</p>
+<p><img src="/2018/12/17/关于日志分析系统并发的一些思考/3.png" align="center" width="300" height="300" div=""></p>
+<h1 id="剩下的只是横向扩展"><a href="#剩下的只是横向扩展" class="headerlink" title="剩下的只是横向扩展"></a>剩下的只是横向扩展</h1><p>其实这个架构，不用纠结于每个节点是不是足够健壮。因为这个其实只是逻辑图。每一个节点可能不只是一个单机，而是一个多机器，多地分布的集群。</p>
+<h1 id="如何保证在节点宕机数据不会丢失"><a href="#如何保证在节点宕机数据不会丢失" class="headerlink" title="如何保证在节点宕机数据不会丢失"></a>如何保证在节点宕机数据不会丢失</h1><p>其实现在很多中间组件都会有ACK的确认，RabbitMQ就有这种功能。开启之后，只有收到ACK后才认为该条数据被消费掉，否则会等待ACK，直到消费者断开链接或者超时后，讲该条数据重新放入队列中供消费者消费。</p>
+<p>这中间的层层确认，以及每一层对数据的检查，都是保证数据不丢的一个前提。</p>
+<p>“每一层对数据的检查” 这个应该有很多门道，之后研究研究专门再写一篇。</p>
+<h1 id="哈希缓存"><a href="#哈希缓存" class="headerlink" title="哈希缓存"></a>哈希缓存</h1><p>目前这个架构已经演变的较为完善。看着下面三层都可以横向扩展了，但是还有一层仍然是单点，就是缓存层。</p>
+<p>所以我想，可以根据数据相互之间关联的唯一字段的去做哈希结构，分布式的存储这些数据，来解决缓存的压力。</p>
+<p>有必要吗？当然有的！</p>
+<p>试想一下，我们现在有10个Beat用来收集数据，每一个beat 10000条/s, 那我们的数据汇总后就是10w条每秒</p>
+<p>采集层可以轮训的分发这些数据。</p>
+<p>队列层也可以部署很多很多节点来分布缓存。</p>
+<p>处理层甚至可以部署更多的节点，来分担处理的压力。</p>
+<p>以上三个层都有个共同点，就是不需要数据之前的同步或关联。</p>
+<p>但是从处理层往后，就需要数据关联了。所以如果只有一个缓存的话，那所有数据汇总之后对单个缓存的访问是10w+/s</p>
+<p>当然可以部署缓存集群，但是如果访问量再大呢？缓存集群之间的数据同步本身就是一个很大的开销。</p>
+<p>所以，我们不如把数据之间的逻辑和存储关系下放至处理层，</p>
+<p>让处理根据一些唯一的值来算一个唯一的哈希，在根据哈希的值去做一个分布式的存储和查找。</p>
+<p>这样的话，缓存的压力也就解决了。</p>
+<p><br></p>
+<p>最后，任何一个节点，都可以扩展了</p>
+<p>就成了如下的样子：</p>
+<p><img src="/2018/12/17/关于日志分析系统并发的一些思考/4.png" align="center" width="300" height="300" div=""></p>
+<p><br><br></p>
 <font color="ff0000">版权声明：本文为原创，欢迎转载，转载请注明出处，勿用于商业用途！</font>
 
       
@@ -456,7 +489,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/default/" rel="tag"># default</a>
           
         </div>
       
@@ -469,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/07/简单的流事件处理小框架/" rel="next" title="简单的流事件处理小框架">
-                <i class="fa fa-chevron-left"></i> 简单的流事件处理小框架
+              <a href="/2018/11/24/Wordpress-Nginx-配置/" rel="next" title="Wordpress Nginx 配置">
+                <i class="fa fa-chevron-left"></i> Wordpress Nginx 配置
               </a>
             
           </div>
@@ -478,10 +511,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/24/Wordpress-Nginx-配置/" rel="prev" title="Wordpress Nginx 配置">
-                Wordpress Nginx 配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -536,8 +565,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -652,6 +690,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#架构的进化"><span class="nav-number">2.</span> <span class="nav-text">架构的进化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#剩下的只是横向扩展"><span class="nav-number">3.</span> <span class="nav-text">剩下的只是横向扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何保证在节点宕机数据不会丢失"><span class="nav-number">4.</span> <span class="nav-text">如何保证在节点宕机数据不会丢失</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#哈希缓存"><span class="nav-number">5.</span> <span class="nav-text">哈希缓存</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -829,9 +883,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://cinjoseph.github.io/2018/11/24/python简洁的语法/';
-        this.page.identifier = '2018/11/24/python简洁的语法/';
-        this.page.title = 'python简洁的语法';
+        this.page.url = 'http://cinjoseph.github.io/2018/12/17/关于日志分析系统并发的一些思考/';
+        this.page.identifier = '2018/12/17/关于日志分析系统并发的一些思考/';
+        this.page.title = '关于日志分析系统并发的一些思考';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
