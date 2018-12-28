@@ -108,24 +108,28 @@
 
 
 
-  <meta name="description" content="Fuck The World">
-<meta name="keywords" content="Fuck The World">
-<meta property="og:type" content="website">
-<meta property="og:title" content="约瑟夫.岑">
-<meta property="og:url" content="http://cinjoseph.github.io/tags/nginx/index.html">
+  <meta name="description" content="两个集群就是连不起来，原来是因为没有加 --net &quot;host&quot;">
+<meta name="keywords" content="docker,rabbitmq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker搭建rabbitMQ的一次淌坑记">
+<meta property="og:url" content="http://cinjoseph.github.io/2018/12/28/docker搭建rabbitMQ的一次淌坑记/index.html">
 <meta property="og:site_name" content="约瑟夫.岑">
-<meta property="og:description" content="Fuck The World">
+<meta property="og:description" content="两个集群就是连不起来，原来是因为没有加 --net &quot;host&quot;">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/12/28/docker搭建rabbitMQ的一次淌坑记/1.png">
+<meta property="og:image" content="http://cinjoseph.github.io/2018/12/28/docker搭建rabbitMQ的一次淌坑记/2.png">
+<meta property="og:updated_time" content="2018-12-28T08:50:59.377Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="约瑟夫.岑">
-<meta name="twitter:description" content="Fuck The World">
+<meta name="twitter:title" content="docker搭建rabbitMQ的一次淌坑记">
+<meta name="twitter:description" content="两个集群就是连不起来，原来是因为没有加 --net &quot;host&quot;">
+<meta name="twitter:image" content="http://cinjoseph.github.io/2018/12/28/docker搭建rabbitMQ的一次淌坑记/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://cinjoseph.github.io/tags/nginx/"/>
+  <link rel="canonical" href="http://cinjoseph.github.io/2018/12/28/docker搭建rabbitMQ的一次淌坑记/"/>
 
 
 
@@ -135,7 +139,7 @@
   };
 </script>
 
-  <title>标签: nginx | 约瑟夫.岑</title>
+  <title>docker搭建rabbitMQ的一次淌坑记 | 约瑟夫.岑</title>
   
 
 
@@ -182,7 +186,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -231,7 +235,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
   </li>
@@ -280,81 +284,292 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>nginx<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cinjoseph.github.io/2018/12/28/docker搭建rabbitMQ的一次淌坑记/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cinjoseph">
+      <meta itemprop="description" content="Fuck The World">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="约瑟夫.岑">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/11/24/Wordpress-Nginx-配置/" itemprop="url">
-              
-                <span itemprop="name">Wordpress Nginx 配置</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">docker搭建rabbitMQ的一次淌坑记
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-24T14:33:42+08:00"
-              content="2018-11-24" >
-          11-24
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-28 16:26:24 / 修改时间：16:50:59" itemprop="dateCreated datePublished" datetime="2018-12-28T16:26:24+08:00">2018-12-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/28/docker搭建rabbitMQ的一次淌坑记/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/12/28/docker搭建rabbitMQ的一次淌坑记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+              <div class="post-description">两个集群就是连不起来，原来是因为没有加 --net "host"</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#0x01 简单介绍搭建步骤</p>
+<p>两台机器：server1 server2<br>都安装docker，每台server上用docker启动一个rabbimq的容器</p>
+<p>在server1执行：</p>
+<pre><code>docker run -itd --name rabbit \
+    --net host \  # 使用宿主机的网络
+    -p 4369:4369 \
+    -p 5671:5671 \
+    -p 5672:5672 \
+    -p 25672:25672 \
+    -p 15672:15672 \
+    -e RABBITMQ_DEFAULT_USER=admin \
+    -e RABBITMQ_DEFAULT_PASS=admin \
+    -e RABBITMQ_VM_MEMORY_HIGH_WATERMARK=0.2 \ # 占用物理内存的百分比
+    -e RABBITMQ_NODENAME=test \
+    -e RABBITMQ_ERLANG_COOKIE=&apos;********&apos; \ # 可以理解成做Erlang分布式的同步密钥之类的吧
+    rabbitmq:3-management
+</code></pre><p>在server2执行：</p>
+<pre><code>docker run -itd --name rabbit \
+    --net host \  # 使用宿主机的网络
+    -p 4369:4369 \
+    -p 5671:5671 \
+    -p 5672:5672 \
+    -p 25672:25672 \
+    -p 15672:15672 \
+    -e RABBITMQ_DEFAULT_USER=admin \
+    -e RABBITMQ_DEFAULT_PASS=admin \
+    -e RABBITMQ_VM_MEMORY_HIGH_WATERMARK=0.2 \ # 占用物理内存的百分比
+    -e RABBITMQ_NODENAME=test \
+    -e RABBITMQ_ERLANG_COOKIE=&apos;********&apos; \ # 可以理解成做Erlang分布式的同步密钥之类的吧
+    rabbitmq:3-management
+
+docker exec rabbit rabbitmqctl stop_app
+docker exec rabbit rabbitmqctl reset
+docker exec rabbit rabbitmqctl join_cluster --ram test@server1
+docker exec rabbit rabbitmqctl start_app
+</code></pre><p>注意：</p>
+<p>Server指定如下命令中， </p>
+<pre><code>docker exec rabbit rabbitmqctl join_cluster --ram test@server1
+</code></pre><p>其中 ‘test@server1’ 的test是Server1中指定的RABBITMQ_NODENAME, @后的server1是server1的主机名</p>
+<p>server2必须要通过主机名‘server1’找的到server1才能正常组成集群。</p>
+<p>#0x02 我遇到了什么问题</p>
+<p>我最初在两台上执行的创建容器命令是：</p>
+<pre><code>docker run -itd --name rabbit \
+     -p 4369:4369 \
+    -p 5671:5671 \
+    -p 5672:5672 \
+    -p 25672:25672 \
+    -p 15672:15672 \
+    -e RABBITMQ_DEFAULT_USER=admin \
+    -e RABBITMQ_DEFAULT_PASS=admin \
+    -e RABBITMQ_VM_MEMORY_HIGH_WATERMARK=0.2 \ 
+    -e RABBITMQ_NODENAME=test \
+    -e RABBITMQ_ERLANG_COOKIE=&apos;********&apos; \ 
+    rabbitmq:3-management
+</code></pre><p>里面缺少了 </p>
+<pre><code>--net host
+</code></pre><p>导致docker默认使用了自己的网络于创建的在server1节点是如下样子：</p>
+<p><img src="/2018/12/28/docker搭建rabbitMQ的一次淌坑记/1.png" alt="avatar"></p>
+<p>主机名成为了docker的主机名</p>
+<p>于是server2执行 ‘docker exec rabbit rabbitmqctl join_cluster –ram test@server1 ’ 时报错了：</p>
+<p><img src="/2018/12/28/docker搭建rabbitMQ的一次淌坑记/2.png" alt="avatar"></p>
+<p>后来终于找到问题，加上 ‘–net host’ 后重新创建了容器， 一切正常了</p>
+<p>容器正常显示节点名：</p>
+<pre><code>test@server1
+</code></pre><p>server2加入server1的节点也正常了</p>
+<p>最关键的是，这坑淌了一下午。。。。浪费时间</p>
+<p><br><br></p>
+<font color="ff0000">版权声明：本文为原创，欢迎转载，转载请注明出处，勿用于商业用途！</font>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+            <a href="/tags/rabbitmq/" rel="tag"># rabbitmq</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/27/Docker学习笔记/" rel="next" title="Docker学习笔记 ">
+                <i class="fa fa-chevron-left"></i> Docker学习笔记 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -647,6 +862,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
 
   
 
@@ -661,6 +880,23 @@
     <script id="dsq-count-scr" src="https://cinjoseph-github-io.disqus.com/count.js" async></script>
   
 
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://cinjoseph.github.io/2018/12/28/docker搭建rabbitMQ的一次淌坑记/';
+        this.page.identifier = '2018/12/28/docker搭建rabbitMQ的一次淌坑记/';
+        this.page.title = 'docker搭建rabbitMQ的一次淌坑记';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cinjoseph-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
   
 
 
