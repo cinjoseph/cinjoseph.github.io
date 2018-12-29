@@ -118,7 +118,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://cinjoseph.github.io/2018/12/28/docker搭建rabbitMQ的一次淌坑记/1.png">
 <meta property="og:image" content="http://cinjoseph.github.io/2018/12/28/docker搭建rabbitMQ的一次淌坑记/2.png">
-<meta property="og:updated_time" content="2018-12-28T08:50:59.377Z">
+<meta property="og:updated_time" content="2018-12-29T03:40:10.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker搭建rabbitMQ的一次淌坑记">
 <meta name="twitter:description" content="两个集群就是连不起来，原来是因为没有加 --net &quot;host&quot;">
@@ -346,12 +346,24 @@
                 
               
 
-              <time title="创建时间：2018-12-28 16:26:24 / 修改时间：16:50:59" itemprop="dateCreated datePublished" datetime="2018-12-28T16:26:24+08:00">2018-12-28</time>
+              <time title="创建时间：2018-12-28 16:26:24" itemprop="dateCreated datePublished" datetime="2018-12-28T16:26:24+08:00">2018-12-28</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-29 11:40:10" itemprop="dateModified" datetime="2018-12-29T11:40:10+08:00">2018-12-29</time>
               
             
           </span>
@@ -464,7 +476,7 @@ docker exec rabbit rabbitmqctl start_app
 <pre><code>docker exec rabbit rabbitmqctl join_cluster --ram test@server1
 </code></pre><p>其中 ‘test@server1’ 的test是Server1中指定的RABBITMQ_NODENAME, @后的server1是server1的主机名</p>
 <p>server2必须要通过主机名‘server1’找的到server1才能正常组成集群。</p>
-<p>#0x02 我遇到了什么问题</p>
+<p>#0x02 集群无法加入的一个小坑</p>
 <p>我最初在两台上执行的创建容器命令是：</p>
 <pre><code>docker run -itd --name rabbit \
      -p 4369:4369 \
@@ -490,7 +502,12 @@ docker exec rabbit rabbitmqctl start_app
 <pre><code>test@server1
 </code></pre><p>server2加入server1的节点也正常了</p>
 <p>最关键的是，这坑淌了一下午。。。。浪费时间</p>
-<p><br><br></p>
+<p>#0x03 关于消息持久化的一个小坑</p>
+<p>在网上查询”RabbitMQ“持久化，基本所有的文章都会写出，设置Durable=True即可，但是我设置之后依然不生效。</p>
+<p>后来通过查询文档得知，Durable设置只是指定Exchange或Queue是否具有持久化能力，但一个消息是否真的需要持久化，最后还得由生产者指定。生产者代码中需加入properties=pika.BasicProperties(delivery_mode=2, )才能实现该条message的持久化</p>
+<pre><code>channel.basic_publish(exchange=&apos;test&apos;, routing_key=&apos;&apos;, body=json.dumps(body),
+                  properties=pika.BasicProperties(delivery_mode=2, ))
+</code></pre><p><br><br></p>
 <font color="ff0000">版权声明：本文为原创，欢迎转载，转载请注明出处，勿用于商业用途！</font>
 
       
